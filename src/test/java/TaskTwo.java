@@ -6,8 +6,7 @@ public class TaskTwo {
 
      @BeforeGroups
      @AfterGroups
-     @BeforeSuite
-     @AfterSuite
+
 
      // Example
 
