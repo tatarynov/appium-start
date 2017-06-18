@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="">
+<suite name="Positive Tests">
+    
+    <listeners>
+        <listener class-name="org.testng.reporters.EmailableReporter2"/>
+    </listeners>
 
-    <test name="">
+    <!--Before test-->
+    <test name="Login">
+
         <groups>
-            <!--FILL ME UP-->
+            <run>
+                <include name="login"/>
+            </run>
         </groups>
 
         <classes>
-            <!--FILL ME UP-->
+            <class name="TaskOne"/>
+            <class name="TaskTwo"/>
+            <class name="TaskThree"/>
         </classes>
 
     </test>
 
-    <test name="">
+    <!--Before test-->
+    <test name="Sign Up">
         <groups>
             <!--FILL ME UP-->
         </groups>
