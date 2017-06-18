@@ -1,3 +1,5 @@
+import org.testng.annotations.*;
+
 public class TaskThree {
 
     /***
@@ -31,4 +33,30 @@ public class TaskThree {
      System.out.println("AfterTest");
      }
      */
+
+    @Test
+    public void taskThreeTest() {
+         System.out.println("This is third test!");
+    }
+
+     @BeforeSuite
+     public void preConditions() {
+          System.out.println("Before suite!");
+     }
+
+     @BeforeTest
+     public void preConditionsBeforeTest() {
+          System.out.println("Before Test!");
+     }
+
+     @AfterTest
+     public void preConditionsAfterTest() {
+          System.out.println("After Test!");
+     }
+
+     @AfterSuite
+     public void preConditionsAfterSuite() {
+          System.out.println("After Suite!");
+     }
+
 }

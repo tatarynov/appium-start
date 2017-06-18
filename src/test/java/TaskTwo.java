@@ -1,3 +1,7 @@
+import org.testng.annotations.AfterGroups;
+import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.Test;
+
 public class TaskTwo {
 
     /***
@@ -10,8 +14,7 @@ public class TaskTwo {
 
      // Example
 
-     @BeforeGroups("findABug")
-     public void beforeGroupsMethod() {
+     @BeforeGroups("findABug") public void beforeGroupsMethod() {
      System.out.println("BeforeGroups");
      }
 
@@ -20,4 +23,19 @@ public class TaskTwo {
      System.out.println("Test #3");
      }
      */
+
+    @Test(groups = {"login", "regression"}, description = "This login tests")
+    public void secondTest() {
+        System.out.println("I am tests with groups");
+    }
+
+    @BeforeGroups("login")
+    public void preconditionBeforeGroup() {
+        System.out.println("I am creating accounts before login tests");
+    }
+
+    @AfterGroups("login")
+    public void postConditionAfterGroup() {
+        System.out.println("I am deleting accounts after login tests");
+    }
 }
