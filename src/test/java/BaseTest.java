@@ -1,21 +1,18 @@
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import pageobjects.BasePage;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class FirstTest {
+public class BaseTest {
 
-    private static AndroidDriver<MobileElement> driver;
+    static AndroidDriver<MobileElement> driver;
 
     @BeforeTest
     private void setUp() {
@@ -34,21 +31,13 @@ public class FirstTest {
             e.printStackTrace();
         }
 
+        new BasePage(driver).setPlatform();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
     }
 
-    @Test
-    public void testSearch() {
-        ContactsListPage contactsListPage = new ContactsListPage(driver);
-        contactsListPage.search("Joy");
-        contactsListPage.clickOnFirstName();
 
-
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("email")));
-
-//        System.out.println(email.equals("alstclair11@yopmail.com"));
+    @AfterTest
+    private void tearDown() {
+        driver.quit();
     }
-
 }
