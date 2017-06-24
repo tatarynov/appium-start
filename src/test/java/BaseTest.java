@@ -3,7 +3,6 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import pageobjects.BasePage;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -13,18 +12,12 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     static AndroidDriver<MobileElement> driver;
-    public Platform platform = Platform.IOS;
-
-    enum Platform {
-        IOS,
-        ANDROID
-    }
 
     @BeforeTest
     public void setUp() {
-        if (platform.equals(Platform.IOS)) {
+        String platformName = System.getProperty("env");
 
-        } else if (platform.equals(Platform.ANDROID)) {
+        if (platformName.equals("Android")) {
             File classpathRoot = new File(System.getProperty("user.dir"));
             File appDir = new File(classpathRoot, "/app/Android");
             File app = new File(appDir, "Contacts.apk");
@@ -40,9 +33,9 @@ public class BaseTest {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+        } else {
+            // creating iOS Driver
         }
-
-        new BasePage(driver).setPlatform();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 

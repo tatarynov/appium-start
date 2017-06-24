@@ -15,13 +15,4 @@ public class BasePage {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         this.driver = driver;
     }
-
-    public void setPlatform() {
-        String platformName = (String) driver.getCapabilities().getCapability("platformName");
-        if (platformName.equals("Android")) {
-            android = true;
-        } else {
-            ios = true;
-        }
-    }
 }
