@@ -13,22 +13,33 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     static AndroidDriver<MobileElement> driver;
+    public Platform platform = Platform.IOS;
+
+    enum Platform {
+        IOS,
+        ANDROID
+    }
 
     @BeforeTest
-    private void setUp() {
-        File classpathRoot = new File(System.getProperty("user.dir"));
-        File appDir = new File(classpathRoot, "/app/Android");
-        File app = new File(appDir, "Contacts.apk");
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("deviceName", "NotUsed");
-        capabilities.setCapability("app", app.getAbsolutePath());
-        capabilities.setCapability("appPackage", "com.jayway.contacts");
-        capabilities.setCapability("appActivity", "com.jayway.contacts.MainActivity");
-        try {
-            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+    public void setUp() {
+        if (platform.equals(Platform.IOS)) {
+
+        } else if (platform.equals(Platform.ANDROID)) {
+            File classpathRoot = new File(System.getProperty("user.dir"));
+            File appDir = new File(classpathRoot, "/app/Android");
+            File app = new File(appDir, "Contacts.apk");
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("platformName", "Android");
+            capabilities.setCapability("deviceName", "NotUsed");
+            capabilities.setCapability("app", app.getAbsolutePath());
+            capabilities.setCapability("appPackage", "com.jayway.contacts");
+            capabilities.setCapability("appActivity", "com.jayway.contacts.MainActivity");
+            capabilities.setCapability("newCommandTimeout", "300");
+            try {
+                driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
 
         new BasePage(driver).setPlatform();
@@ -37,7 +48,7 @@ public class BaseTest {
 
 
     @AfterTest
-    private void tearDown() {
+    public void tearDown() {
         driver.quit();
     }
 }

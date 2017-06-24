@@ -8,8 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 public class BasePage {
 
     AppiumDriver<MobileElement> driver;
-    boolean ios = false;
-    boolean android = false;
+    static boolean ios = false;
+    static boolean android = false;
 
     public BasePage(AppiumDriver<MobileElement> driver) {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);

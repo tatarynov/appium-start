@@ -13,6 +13,6 @@ public class SearchTest extends BaseTest {
         ContactDetailsPage contactDetailsPage = contactsListPage.clickOnFirstName();
         String emailAddress = contactDetailsPage.getEmailAddress();
 
-        Assert.assertEquals("alstclair11@yopmail.com", emailAddress);
+        Assert.assertEquals(emailAddress, "alstclair11@yopmail.com");
     }
 }
