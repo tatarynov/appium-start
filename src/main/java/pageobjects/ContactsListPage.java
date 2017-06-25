@@ -8,14 +8,14 @@ import io.appium.java_client.pagefactory.iOSFindBy;
 public class ContactsListPage extends BasePage {
 
     @AndroidFindBy(id = "main_search")
-    @iOSFindBy(xpath = "")
+    @iOSFindBy(accessibility = "Search for contact")
     private MobileElement searchField;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.jayway.contacts:id/name']")
-    @iOSFindBy(xpath = "")
+    @iOSFindBy(xpath = "//*[@label='Search results']//XCUIElementTypeStaticText")
     private MobileElement firstName;
 
-    public ContactsListPage(AppiumDriver driver) {
+    public ContactsListPage(AppiumDriver<MobileElement> driver) {
         super(driver);
     }
 
