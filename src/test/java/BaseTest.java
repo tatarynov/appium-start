@@ -29,12 +29,12 @@ public class BaseTest {
             if (platformName.equals("android")) {
                 File classpathRoot = new File(System.getProperty("user.dir"));
                 File appDir = new File(classpathRoot, "/app/Android");
-                File app = new File(appDir, "Contacts.apk");
+                File app = new File(appDir, "FasTip.apk");
                 capabilities.setCapability("platformName", "Android");
                 capabilities.setCapability("deviceName", "NotUsed");
                 capabilities.setCapability("app", app.getAbsolutePath());
-                capabilities.setCapability("appPackage", "com.jayway.contacts");
-                capabilities.setCapability("appActivity", "com.jayway.contacts.MainActivity");
+                capabilities.setCapability("appPackage", "org.traeg.fastip");
+                capabilities.setCapability("appActivity", "org.traeg.fastip.MainActivity");
                 capabilities.setCapability("newCommandSettingsTimeout", "300");
                 driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
             } else if (platformName.equals("ios")) {
