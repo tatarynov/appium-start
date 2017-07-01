@@ -42,4 +42,13 @@ public class BasePage {
                 .findElementByAndroidUIAutomator(query);
         element.click();
     }
+
+    // Android
+    public void scrollToElement(MobileElement elementFrom, MobileElement elementTo) {
+        new TouchAction(driver).press(elementFrom).moveTo(elementTo).perform();
+    }
+
+    public void hideKeyboard() {
+        driver.hideKeyboard();
+    }
 }
