@@ -34,18 +34,10 @@ public class BasePage {
         driver.executeScript("mobile: scroll", scrollObject);
     }
 
-    public void scrollDownAndroid(MobileElement element) {
-        int x = element.getLocation().getX();
-        int y = element.getLocation().getY();
-
-        TouchAction action = new TouchAction(driver);
-        action.press(x, y).moveTo(x, y + 50).release().perform();
-    }
-
     // Not working, need to investigate
-    public void scrollToElement(String text) {
-        String query = String.format("new UiScrollable(new UiSelector().resourceId(\"android:id/content\")).scrollIntoView(" +
-                "new UiSelector().text(\"%s\"));", text);
+    public void scrollToElement(String scrollableContent, String text) {
+        String query = String.format("new UiScrollable(new UiSelector().resourceId(\"%s\")).scrollIntoView(" +
+                "new UiSelector().text(\"%s\"));", scrollableContent, text);
         MobileElement element = ((AndroidDriver<MobileElement>) driver)
                 .findElementByAndroidUIAutomator(query);
         element.click();

@@ -8,6 +8,7 @@ public class SearchTest extends BaseTest {
     @Test
     public void testSearch() {
         ContactsListPage contactsListPage = new ContactsListPage(driver);
+        contactsListPage.scrollDownAndroid();
         contactsListPage.search("Joy");
 
         ContactDetailsPage contactDetailsPage = contactsListPage.clickOnFirstName();
