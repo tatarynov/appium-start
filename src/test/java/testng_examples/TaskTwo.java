@@ -1,3 +1,5 @@
+package testng_examples;
+
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;

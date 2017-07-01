@@ -1,4 +1,4 @@
-package parameters;
+package testng_examples.parameters;
 
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeGroups;

@@ -1,4 +1,4 @@
-package parameters;
+package testng_examples.parameters;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
