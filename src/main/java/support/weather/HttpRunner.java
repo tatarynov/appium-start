@@ -1,5 +1,6 @@
 package support.weather;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Response;
 import support.weather.dto.GeoDTO;
@@ -21,6 +22,15 @@ public class HttpRunner {
         Response response = HttpHelper.get(url);
         String jsonString = response.body().string();
 
+        // First way - SHORT
+        JsonNode jsonNode = new ObjectMapper().readValue(jsonString, JsonNode.class);
+        String lat = jsonNode.get("results").get(0).get("geometry").get("location").get("lat").asText();
+        String lng = jsonNode.get("results").get(0).get("geometry").get("location").get("lng").asText();
+        System.out.println(lat);
+        System.out.println(lng);
+
+
+        // Second way - LONG with DTOs
         GeoDTO geoDTO = new ObjectMapper().readValue(jsonString, GeoDTO.class);
         Location location = geoDTO.getLocation(0);
 
