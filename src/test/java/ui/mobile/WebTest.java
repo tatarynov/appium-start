@@ -1,3 +1,5 @@
+package ui.mobile;
+
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import org.testng.Assert;

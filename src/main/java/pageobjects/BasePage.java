@@ -5,15 +5,16 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.support.PageFactory;
+import support.utils.DriverManager;
 
 import java.util.HashMap;
 
 public class BasePage {
 
     AppiumDriver<MobileElement> driver;
-    static boolean ios = false;
-    static boolean android = false;
 
     public BasePage(AppiumDriver<MobileElement> driver) {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -45,10 +46,19 @@ public class BasePage {
 
     // Android
     public void scrollToElement(MobileElement elementFrom, MobileElement elementTo) {
-        new TouchAction(driver).press(elementFrom).moveTo(elementTo).perform();
+        Point locationFrom = elementFrom.getLocation();
+        Point locationTo = elementTo.getLocation();
+        new TouchAction(driver)
+                .press(PointOption.point(locationFrom.getX(), locationFrom.getY()))
+                .moveTo(PointOption.point(locationTo.getX(), locationTo.getY()))
+                .perform();
     }
 
     public void hideKeyboard() {
         driver.hideKeyboard();
+    }
+
+    public void goBack() {
+        driver.navigate().back();
     }
 }
